@@ -1,0 +1,2102 @@
+
+ATmega16OS.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000b32  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000014  00800060  00000b32  00000bc6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000153  00800074  00800074  00000bda  2**0
+                  ALLOC
+  3 .debug_aranges 000000e0  00000000  00000000  00000bda  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 0000041d  00000000  00000000  00000cba  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000e8d  00000000  00000000  000010d7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000709  00000000  00000000  00001f64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000011e4  00000000  00000000  0000266d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000270  00000000  00000000  00003854  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000458  00000000  00000000  00003ac4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000030f  00000000  00000000  00003f1c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000018  00000000  00000000  0000422b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 16 02 	jmp	0x42c	; 0x42c <__vector_4>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e3       	ldi	r30, 0x32	; 50
+  68:	fb e0       	ldi	r31, 0x0B	; 11
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a4 37       	cpi	r26, 0x74	; 116
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	11 e0       	ldi	r17, 0x01	; 1
+  78:	a4 e7       	ldi	r26, 0x74	; 116
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a7 3c       	cpi	r26, 0xC7	; 199
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 97 05 	jmp	0xb2e	; 0xb2e <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+/******************包含系统头文件***************/
+#include "Global.h"
+/****************主函数***************/
+int main(void)
+{
+	 CLI();
+  92:	f8 94       	cli
+     Bsp_Init();
+  94:	0e 94 68 03 	call	0x6d0	; 0x6d0 <Bsp_Init>
+	 ATmega16OS_Init();
+  98:	0e 94 2f 01 	call	0x25e	; 0x25e <ATmega16OS_Init>
+	 ATmega16OS_TaskCreate(LED_Task, &LED_Task_Stk[63] ,0);
+  9c:	85 e1       	ldi	r24, 0x15	; 21
+  9e:	94 e0       	ldi	r25, 0x04	; 4
+  a0:	6f e7       	ldi	r22, 0x7F	; 127
+  a2:	71 e0       	ldi	r23, 0x01	; 1
+  a4:	40 e0       	ldi	r20, 0x00	; 0
+  a6:	0e 94 9b 00 	call	0x136	; 0x136 <ATmega16OS_TaskCreate>
+	 ATmega16OS_TaskCreate(Buzzer_Task, &Buzzer_Task_Stk[63] ,1);
+  aa:	8f e6       	ldi	r24, 0x6F	; 111
+  ac:	93 e0       	ldi	r25, 0x03	; 3
+  ae:	64 ec       	ldi	r22, 0xC4	; 196
+  b0:	71 e0       	ldi	r23, 0x01	; 1
+  b2:	41 e0       	ldi	r20, 0x01	; 1
+  b4:	0e 94 9b 00 	call	0x136	; 0x136 <ATmega16OS_TaskCreate>
+	 ATmega16OS_TaskCreate(Tube_Task,&Tube_Task_Stk[63],2);
+  b8:	88 e8       	ldi	r24, 0x88	; 136
+  ba:	93 e0       	ldi	r25, 0x03	; 3
+  bc:	6e e3       	ldi	r22, 0x3E	; 62
+  be:	71 e0       	ldi	r23, 0x01	; 1
+  c0:	42 e0       	ldi	r20, 0x02	; 2
+  c2:	0e 94 9b 00 	call	0x136	; 0x136 <ATmega16OS_TaskCreate>
+	 SEI();
+  c6:	78 94       	sei
+	 ATmega16OS_Start();
+  c8:	0e 94 0f 01 	call	0x21e	; 0x21e <ATmega16OS_Start>
+  cc:	ff cf       	rjmp	.-2      	; 0xcc <main+0x3a>
+
+000000ce <ATmega16OS_SetPrioRdy>:
+void ATmega16OS_SysTick_Init(void);
+
+//设置相应的任务为 就绪状态
+void ATmega16OS_SetPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl |= 0x01 << Prio;
+  ce:	21 e0       	ldi	r18, 0x01	; 1
+  d0:	30 e0       	ldi	r19, 0x00	; 0
+  d2:	02 c0       	rjmp	.+4      	; 0xd8 <ATmega16OS_SetPrioRdy+0xa>
+  d4:	22 0f       	add	r18, r18
+  d6:	33 1f       	adc	r19, r19
+  d8:	8a 95       	dec	r24
+  da:	e2 f7       	brpl	.-8      	; 0xd4 <ATmega16OS_SetPrioRdy+0x6>
+  dc:	80 91 fe 00 	lds	r24, 0x00FE
+  e0:	82 2b       	or	r24, r18
+  e2:	80 93 fe 00 	sts	0x00FE, r24
+}
+  e6:	08 95       	ret
+
+000000e8 <ATmega16OS_DelPrioRdy>:
+
+//用于讲某任务在任务就绪表中删除
+void ATmega16OS_DelPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl &= ~(0x01 << Prio);
+  e8:	21 e0       	ldi	r18, 0x01	; 1
+  ea:	30 e0       	ldi	r19, 0x00	; 0
+  ec:	02 c0       	rjmp	.+4      	; 0xf2 <ATmega16OS_DelPrioRdy+0xa>
+  ee:	22 0f       	add	r18, r18
+  f0:	33 1f       	adc	r19, r19
+  f2:	8a 95       	dec	r24
+  f4:	e2 f7       	brpl	.-8      	; 0xee <ATmega16OS_DelPrioRdy+0x6>
+  f6:	20 95       	com	r18
+  f8:	80 91 fe 00 	lds	r24, 0x00FE
+  fc:	82 23       	and	r24, r18
+  fe:	80 93 fe 00 	sts	0x00FE, r24
+}
+ 102:	08 95       	ret
+
+00000104 <ATmega16OS_GetHighRdy>:
+{
+	SINT8 Temp_OSNextTaskPrio  = 7;
+	UINT8 Final_OSNextTaskPrio = 7;
+	for (Temp_OSNextTaskPrio = 7; Temp_OSNextTaskPrio >= 0; Temp_OSNextTaskPrio--)
+    {
+		if (OSRdyTbl&(0x01 << Temp_OSNextTaskPrio))
+ 104:	80 91 fe 00 	lds	r24, 0x00FE
+ 108:	48 2f       	mov	r20, r24
+ 10a:	50 e0       	ldi	r21, 0x00	; 0
+ 10c:	67 e0       	ldi	r22, 0x07	; 7
+ 10e:	27 e0       	ldi	r18, 0x07	; 7
+ 110:	30 e0       	ldi	r19, 0x00	; 0
+ 112:	ca 01       	movw	r24, r20
+ 114:	02 2e       	mov	r0, r18
+ 116:	02 c0       	rjmp	.+4      	; 0x11c <ATmega16OS_GetHighRdy+0x18>
+ 118:	95 95       	asr	r25
+ 11a:	87 95       	ror	r24
+ 11c:	0a 94       	dec	r0
+ 11e:	e2 f7       	brpl	.-8      	; 0x118 <ATmega16OS_GetHighRdy+0x14>
+ 120:	80 fd       	sbrc	r24, 0
+ 122:	62 2f       	mov	r22, r18
+ 124:	21 50       	subi	r18, 0x01	; 1
+ 126:	30 40       	sbci	r19, 0x00	; 0
+//从任务就绪表中选出优先级别最高的任务
+void ATmega16OS_GetHighRdy(void)
+{
+	SINT8 Temp_OSNextTaskPrio  = 7;
+	UINT8 Final_OSNextTaskPrio = 7;
+	for (Temp_OSNextTaskPrio = 7; Temp_OSNextTaskPrio >= 0; Temp_OSNextTaskPrio--)
+ 128:	8f ef       	ldi	r24, 0xFF	; 255
+ 12a:	2f 3f       	cpi	r18, 0xFF	; 255
+ 12c:	38 07       	cpc	r19, r24
+ 12e:	89 f7       	brne	.-30     	; 0x112 <ATmega16OS_GetHighRdy+0xe>
+		{
+			Final_OSNextTaskPrio = Temp_OSNextTaskPrio;
+		}
+    }
+	//赋值最高优先级任务
+	OSPrioHighRdy = Final_OSNextTaskPrio;
+ 130:	60 93 bc 00 	sts	0x00BC, r22
+}
+ 134:	08 95       	ret
+
+00000136 <ATmega16OS_TaskCreate>:
+
+//OS的任务创建函数
+//变量依次如下
+//函数指针 任务堆栈  任务优先级
+void ATmega16OS_TaskCreate(void (*Task)(void), UINT8 *P_Stk, UINT8 Prio)
+{
+ 136:	fb 01       	movw	r30, r22
+		*(P_Stk--) = (UINT16)Task   ;       
+ 138:	80 83       	st	Z, r24
+		*(P_Stk--) = (UINT16)Task>>8;      
+ 13a:	92 93       	st	-Z, r25
+
+		*(P_Stk--) = 0x00   ;                //R 1
+ 13c:	12 92       	st	-Z, r1
+		*(P_Stk--) = 0x00;                   //R 0 
+ 13e:	12 92       	st	-Z, r1
+
+		*(P_Stk--) = 0x00;                   //SREG
+ 140:	12 92       	st	-Z, r1
+		*(P_Stk--) = 0x02;                   //R 2
+ 142:	22 e0       	ldi	r18, 0x02	; 2
+ 144:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x03;                   //R 3
+ 146:	23 e0       	ldi	r18, 0x03	; 3
+ 148:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x04;                   //R 4
+ 14a:	24 e0       	ldi	r18, 0x04	; 4
+ 14c:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x05;                   //R 5
+ 14e:	25 e0       	ldi	r18, 0x05	; 5
+ 150:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x06;                   //R 6
+ 152:	26 e0       	ldi	r18, 0x06	; 6
+ 154:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x07;                   //R 7
+ 156:	27 e0       	ldi	r18, 0x07	; 7
+ 158:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x08;                   //R 8
+ 15a:	28 e0       	ldi	r18, 0x08	; 8
+ 15c:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x09;                   //R 9
+ 15e:	29 e0       	ldi	r18, 0x09	; 9
+ 160:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x0A;                   //R10
+ 162:	2a e0       	ldi	r18, 0x0A	; 10
+ 164:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x0B;                   //R11
+ 166:	2b e0       	ldi	r18, 0x0B	; 11
+ 168:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x0C;                   //R12
+ 16a:	2c e0       	ldi	r18, 0x0C	; 12
+ 16c:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x0D;                   //R13
+ 16e:	2d e0       	ldi	r18, 0x0D	; 13
+ 170:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x0E;                   //R14
+ 172:	2e e0       	ldi	r18, 0x0E	; 14
+ 174:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x0F;                   //R15
+ 176:	2f e0       	ldi	r18, 0x0F	; 15
+ 178:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x10;                   //R16
+ 17a:	20 e1       	ldi	r18, 0x10	; 16
+ 17c:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x11;                   //R17
+ 17e:	21 e1       	ldi	r18, 0x11	; 17
+ 180:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x12;                   //R18
+ 182:	22 e1       	ldi	r18, 0x12	; 18
+ 184:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x13;                   //R19
+ 186:	23 e1       	ldi	r18, 0x13	; 19
+ 188:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x14;                   //R20
+ 18a:	24 e1       	ldi	r18, 0x14	; 20
+ 18c:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x15;                   //R21
+ 18e:	25 e1       	ldi	r18, 0x15	; 21
+ 190:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x16;                   //R22
+ 192:	26 e1       	ldi	r18, 0x16	; 22
+ 194:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x17;                   //R23
+ 196:	27 e1       	ldi	r18, 0x17	; 23
+ 198:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x18;                   //R24
+ 19a:	28 e1       	ldi	r18, 0x18	; 24
+ 19c:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x19;                   //R25
+ 19e:	29 e1       	ldi	r18, 0x19	; 25
+ 1a0:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x1A;                   //R26
+ 1a2:	2a e1       	ldi	r18, 0x1A	; 26
+ 1a4:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x1B;                   //R27
+ 1a6:	2b e1       	ldi	r18, 0x1B	; 27
+ 1a8:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x1C;                   //R28
+ 1aa:	2c e1       	ldi	r18, 0x1C	; 28
+ 1ac:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x1D;                   //R29
+ 1ae:	2d e1       	ldi	r18, 0x1D	; 29
+ 1b0:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x1E;                   //R30
+ 1b2:	2e e1       	ldi	r18, 0x1E	; 30
+ 1b4:	22 93       	st	-Z, r18
+		*(P_Stk--) = 0x1F;                   //R31
+ 1b6:	2f e1       	ldi	r18, 0x1F	; 31
+ 1b8:	22 93       	st	-Z, r18
+void ATmega16OS_SysTick_Init(void);
+
+//设置相应的任务为 就绪状态
+void ATmega16OS_SetPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl |= 0x01 << Prio;
+ 1ba:	64 2f       	mov	r22, r20
+ 1bc:	70 e0       	ldi	r23, 0x00	; 0
+ 1be:	21 e0       	ldi	r18, 0x01	; 1
+ 1c0:	30 e0       	ldi	r19, 0x00	; 0
+ 1c2:	04 2e       	mov	r0, r20
+ 1c4:	02 c0       	rjmp	.+4      	; 0x1ca <ATmega16OS_TaskCreate+0x94>
+ 1c6:	22 0f       	add	r18, r18
+ 1c8:	33 1f       	adc	r19, r19
+ 1ca:	0a 94       	dec	r0
+ 1cc:	e2 f7       	brpl	.-8      	; 0x1c6 <ATmega16OS_TaskCreate+0x90>
+ 1ce:	50 91 fe 00 	lds	r21, 0x00FE
+ 1d2:	52 2b       	or	r21, r18
+ 1d4:	50 93 fe 00 	sts	0x00FE, r21
+        
+		//写入任务就绪表
+		ATmega16OS_SetPrioRdy(Prio);
+		
+        //函数指针指向
+		TCB[Prio].Function = Task;
+ 1d8:	db 01       	movw	r26, r22
+ 1da:	23 e0       	ldi	r18, 0x03	; 3
+ 1dc:	aa 0f       	add	r26, r26
+ 1de:	bb 1f       	adc	r27, r27
+ 1e0:	2a 95       	dec	r18
+ 1e2:	e1 f7       	brne	.-8      	; 0x1dc <ATmega16OS_TaskCreate+0xa6>
+ 1e4:	2c e7       	ldi	r18, 0x7C	; 124
+ 1e6:	30 e0       	ldi	r19, 0x00	; 0
+ 1e8:	12 96       	adiw	r26, 0x02	; 2
+ 1ea:	a2 0f       	add	r26, r18
+ 1ec:	b3 1f       	adc	r27, r19
+ 1ee:	8c 93       	st	X, r24
+ 1f0:	11 96       	adiw	r26, 0x01	; 1
+ 1f2:	9c 93       	st	X, r25
+
+		//任务相应的TCB堆栈指向这里
+        TCB[Prio].StkPtr = (UINT16)P_Stk;  
+ 1f4:	93 e0       	ldi	r25, 0x03	; 3
+ 1f6:	66 0f       	add	r22, r22
+ 1f8:	77 1f       	adc	r23, r23
+ 1fa:	9a 95       	dec	r25
+ 1fc:	e1 f7       	brne	.-8      	; 0x1f6 <ATmega16OS_TaskCreate+0xc0>
+ 1fe:	d9 01       	movw	r26, r18
+ 200:	a6 0f       	add	r26, r22
+ 202:	b7 1f       	adc	r27, r23
+ 204:	31 97       	sbiw	r30, 0x01	; 1
+ 206:	11 96       	adiw	r26, 0x01	; 1
+ 208:	fc 93       	st	X, r31
+ 20a:	ee 93       	st	-X, r30
+
+		//置位任务的优先级
+		TCB[Prio].Priority = Prio;
+ 20c:	26 0f       	add	r18, r22
+ 20e:	37 1f       	adc	r19, r23
+ 210:	f9 01       	movw	r30, r18
+ 212:	44 83       	std	Z+4, r20	; 0x04
+
+        //初始化任务节拍数
+		TCB[Prio].DelayTick = 0;
+ 214:	16 96       	adiw	r26, 0x06	; 6
+ 216:	1c 92       	st	X, r1
+ 218:	1e 92       	st	-X, r1
+ 21a:	15 97       	sbiw	r26, 0x05	; 5
+}
+ 21c:	08 95       	ret
+
+0000021e <ATmega16OS_Start>:
+
+//操作系统启动函数
+void ATmega16OS_Start(void)
+{
+	//先找到优先级别做高的任务
+	ATmega16OS_GetHighRdy();
+ 21e:	0e 94 82 00 	call	0x104	; 0x104 <ATmega16OS_GetHighRdy>
+    //赋值当前优先级
+	OSPrioCur = OSPrioHighRdy;
+ 222:	e0 91 bc 00 	lds	r30, 0x00BC
+ 226:	e0 93 bd 00 	sts	0x00BD, r30
+    //更改SP指向，准备弹出，PC更改至最高优先级堆栈的函数入口
+    SP = TCB[OSPrioCur].StkPtr + 33;
+ 22a:	f0 e0       	ldi	r31, 0x00	; 0
+ 22c:	33 e0       	ldi	r19, 0x03	; 3
+ 22e:	ee 0f       	add	r30, r30
+ 230:	ff 1f       	adc	r31, r31
+ 232:	3a 95       	dec	r19
+ 234:	e1 f7       	brne	.-8      	; 0x22e <ATmega16OS_Start+0x10>
+ 236:	e4 58       	subi	r30, 0x84	; 132
+ 238:	ff 4f       	sbci	r31, 0xFF	; 255
+ 23a:	80 81       	ld	r24, Z
+ 23c:	91 81       	ldd	r25, Z+1	; 0x01
+ 23e:	81 96       	adiw	r24, 0x21	; 33
+ 240:	9e bf       	out	0x3e, r25	; 62
+ 242:	8d bf       	out	0x3d, r24	; 61
+
+}
+ 244:	08 95       	ret
+
+00000246 <ATmega16OS_Idle_Task>:
+	ATmega16OS_TaskCreate(ATmega16OS_Idle_Task,&Idle_Task_Stk[63],7);
+}
+
+//运行的空闲任务
+void ATmega16OS_Idle_Task(void)
+{
+ 246:	ff cf       	rjmp	.-2      	; 0x246 <ATmega16OS_Idle_Task>
+
+00000248 <ATmega16OS_SysTick_Init>:
+
+//系统心跳初始化 用的TIM2 10ms一次
+void ATmega16OS_SysTick_Init(void)
+{    
+     //打开定时器中断使能
+     MCUCR |=(1<<TOIE2);	
+ 248:	85 b7       	in	r24, 0x35	; 53
+ 24a:	80 64       	ori	r24, 0x40	; 64
+ 24c:	85 bf       	out	0x35, r24	; 53
+     //定时器中断使能
+     TIMSK|=(1<<TOIE2);
+ 24e:	89 b7       	in	r24, 0x39	; 57
+ 250:	80 64       	ori	r24, 0x40	; 64
+ 252:	89 bf       	out	0x39, r24	; 57
+	 //定时器赋初值 
+     TCNT2 =0;
+ 254:	14 bc       	out	0x24, r1	; 36
+	 //64分频
+     TCCR2 |= ((1 << CS01)|(1 << CS00));
+ 256:	85 b5       	in	r24, 0x25	; 37
+ 258:	83 60       	ori	r24, 0x03	; 3
+ 25a:	85 bd       	out	0x25, r24	; 37
+}
+ 25c:	08 95       	ret
+
+0000025e <ATmega16OS_Init>:
+
+//操作系统初始化函数
+void ATmega16OS_Init(void)
+{
+	//创建系统心脏
+	ATmega16OS_SysTick_Init();
+ 25e:	0e 94 24 01 	call	0x248	; 0x248 <ATmega16OS_SysTick_Init>
+	//创建空闲任务
+	ATmega16OS_TaskCreate(ATmega16OS_Idle_Task,&Idle_Task_Stk[63],7);
+ 262:	83 e2       	ldi	r24, 0x23	; 35
+ 264:	91 e0       	ldi	r25, 0x01	; 1
+ 266:	6d ef       	ldi	r22, 0xFD	; 253
+ 268:	70 e0       	ldi	r23, 0x00	; 0
+ 26a:	47 e0       	ldi	r20, 0x07	; 7
+ 26c:	0e 94 9b 00 	call	0x136	; 0x136 <ATmega16OS_TaskCreate>
+}
+ 270:	08 95       	ret
+
+00000272 <OSSched>:
+	ATmega16OS_Task_Switch();
+}
+
+void OSSched(void)
+{
+	OS_ENTER_CRITICAL();
+ 272:	f8 94       	cli
+
+	if (OSPrioHighRdy != OSPrioCur)
+ 274:	20 91 bc 00 	lds	r18, 0x00BC
+ 278:	e0 91 bd 00 	lds	r30, 0x00BD
+ 27c:	2e 17       	cp	r18, r30
+ 27e:	09 f4       	brne	.+2      	; 0x282 <OSSched+0x10>
+ 280:	5f c0       	rjmp	.+190    	; 0x340 <OSSched+0xce>
+	{
+		__asm__ __volatile__("PUSH __zero_reg__          \n\t");
+ 282:	1f 92       	push	r1
+		__asm__ __volatile__("PUSH __tmp_reg__           \n\t");
+ 284:	0f 92       	push	r0
+		__asm__ __volatile__("IN   __tmp_reg__,__SREG__  \n\t");
+ 286:	0f b6       	in	r0, 0x3f	; 63
+		__asm__ __volatile__("PUSH __tmp_reg__           \n\t");
+ 288:	0f 92       	push	r0
+		__asm__ __volatile__("PUSH R2                    \n\t");
+ 28a:	2f 92       	push	r2
+		__asm__ __volatile__("PUSH R3                    \n\t");
+ 28c:	3f 92       	push	r3
+		__asm__ __volatile__("PUSH R4                    \n\t");
+ 28e:	4f 92       	push	r4
+		__asm__ __volatile__("PUSH R5                    \n\t");
+ 290:	5f 92       	push	r5
+		__asm__ __volatile__("PUSH R6                    \n\t");
+ 292:	6f 92       	push	r6
+		__asm__ __volatile__("PUSH R7                    \n\t");
+ 294:	7f 92       	push	r7
+		__asm__ __volatile__("PUSH R8                    \n\t");
+ 296:	8f 92       	push	r8
+		__asm__ __volatile__("PUSH R9                    \n\t");
+ 298:	9f 92       	push	r9
+		__asm__ __volatile__("PUSH R10                   \n\t");
+ 29a:	af 92       	push	r10
+		__asm__ __volatile__("PUSH R11                   \n\t");
+ 29c:	bf 92       	push	r11
+		__asm__ __volatile__("PUSH R12                   \n\t");
+ 29e:	cf 92       	push	r12
+		__asm__ __volatile__("PUSH R13                   \n\t");
+ 2a0:	df 92       	push	r13
+		__asm__ __volatile__("PUSH R14                   \n\t");
+ 2a2:	ef 92       	push	r14
+		__asm__ __volatile__("PUSH R15                   \n\t");
+ 2a4:	ff 92       	push	r15
+		__asm__ __volatile__("PUSH R16                   \n\t");
+ 2a6:	0f 93       	push	r16
+		__asm__ __volatile__("PUSH R17                   \n\t");
+ 2a8:	1f 93       	push	r17
+		__asm__ __volatile__("PUSH R18                   \n\t");
+ 2aa:	2f 93       	push	r18
+		__asm__ __volatile__("PUSH R19                   \n\t");
+ 2ac:	3f 93       	push	r19
+		__asm__ __volatile__("PUSH R20                   \n\t");
+ 2ae:	4f 93       	push	r20
+		__asm__ __volatile__("PUSH R21                   \n\t");
+ 2b0:	5f 93       	push	r21
+		__asm__ __volatile__("PUSH R22                   \n\t");
+ 2b2:	6f 93       	push	r22
+		__asm__ __volatile__("PUSH R23                   \n\t");
+ 2b4:	7f 93       	push	r23
+		__asm__ __volatile__("PUSH R24                   \n\t");
+ 2b6:	8f 93       	push	r24
+		__asm__ __volatile__("PUSH R25                   \n\t");
+ 2b8:	9f 93       	push	r25
+		__asm__ __volatile__("PUSH R26                   \n\t");
+ 2ba:	af 93       	push	r26
+		__asm__ __volatile__("PUSH R27                   \n\t");
+ 2bc:	bf 93       	push	r27
+		__asm__ __volatile__("PUSH R28                   \n\t");
+ 2be:	cf 93       	push	r28
+		__asm__ __volatile__("PUSH R29                   \n\t");
+ 2c0:	df 93       	push	r29
+		__asm__ __volatile__("PUSH R30                   \n\t");
+ 2c2:	ef 93       	push	r30
+		__asm__ __volatile__("PUSH R31                   \n\t");  //入栈完成
+ 2c4:	ff 93       	push	r31
+
+        TCB[OSPrioCur].StkPtr = SP;
+ 2c6:	8d b7       	in	r24, 0x3d	; 61
+ 2c8:	9e b7       	in	r25, 0x3e	; 62
+ 2ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 2cc:	53 e0       	ldi	r21, 0x03	; 3
+ 2ce:	ee 0f       	add	r30, r30
+ 2d0:	ff 1f       	adc	r31, r31
+ 2d2:	5a 95       	dec	r21
+ 2d4:	e1 f7       	brne	.-8      	; 0x2ce <OSSched+0x5c>
+ 2d6:	e4 58       	subi	r30, 0x84	; 132
+ 2d8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2da:	91 83       	std	Z+1, r25	; 0x01
+ 2dc:	80 83       	st	Z, r24
+        OSPrioCur = OSPrioHighRdy;
+ 2de:	20 93 bd 00 	sts	0x00BD, r18
+        SP = TCB[OSPrioCur].StkPtr;
+ 2e2:	e2 2f       	mov	r30, r18
+ 2e4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2e6:	43 e0       	ldi	r20, 0x03	; 3
+ 2e8:	ee 0f       	add	r30, r30
+ 2ea:	ff 1f       	adc	r31, r31
+ 2ec:	4a 95       	dec	r20
+ 2ee:	e1 f7       	brne	.-8      	; 0x2e8 <OSSched+0x76>
+ 2f0:	e4 58       	subi	r30, 0x84	; 132
+ 2f2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2f4:	80 81       	ld	r24, Z
+ 2f6:	91 81       	ldd	r25, Z+1	; 0x01
+ 2f8:	9e bf       	out	0x3e, r25	; 62
+ 2fa:	8d bf       	out	0x3d, r24	; 61
+
+		__asm__ __volatile__("POP  R31                   \n\t");
+ 2fc:	ff 91       	pop	r31
+		__asm__ __volatile__("POP  R30                   \n\t");
+ 2fe:	ef 91       	pop	r30
+		__asm__ __volatile__("POP  R29                   \n\t");
+ 300:	df 91       	pop	r29
+		__asm__ __volatile__("POP  R28                   \n\t");
+ 302:	cf 91       	pop	r28
+		__asm__ __volatile__("POP  R27                   \n\t");
+ 304:	bf 91       	pop	r27
+		__asm__ __volatile__("POP  R26                   \n\t");
+ 306:	af 91       	pop	r26
+		__asm__ __volatile__("POP  R25                   \n\t");
+ 308:	9f 91       	pop	r25
+		__asm__ __volatile__("POP  R24                   \n\t");
+ 30a:	8f 91       	pop	r24
+		__asm__ __volatile__("POP  R23                   \n\t");
+ 30c:	7f 91       	pop	r23
+		__asm__ __volatile__("POP  R22                   \n\t");
+ 30e:	6f 91       	pop	r22
+		__asm__ __volatile__("POP  R21                   \n\t");
+ 310:	5f 91       	pop	r21
+		__asm__ __volatile__("POP  R20                   \n\t");
+ 312:	4f 91       	pop	r20
+		__asm__ __volatile__("POP  R19                   \n\t");
+ 314:	3f 91       	pop	r19
+		__asm__ __volatile__("POP  R18                   \n\t");
+ 316:	2f 91       	pop	r18
+		__asm__ __volatile__("POP  R17                   \n\t");
+ 318:	1f 91       	pop	r17
+		__asm__ __volatile__("POP  R16                   \n\t");
+ 31a:	0f 91       	pop	r16
+		__asm__ __volatile__("POP  R15                   \n\t");
+ 31c:	ff 90       	pop	r15
+		__asm__ __volatile__("POP  R14                   \n\t");
+ 31e:	ef 90       	pop	r14
+		__asm__ __volatile__("POP  R13                   \n\t");
+ 320:	df 90       	pop	r13
+		__asm__ __volatile__("POP  R12                   \n\t");
+ 322:	cf 90       	pop	r12
+		__asm__ __volatile__("POP  R11                   \n\t");
+ 324:	bf 90       	pop	r11
+		__asm__ __volatile__("POP  R10                   \n\t");
+ 326:	af 90       	pop	r10
+		__asm__ __volatile__("POP  R9                    \n\t");
+ 328:	9f 90       	pop	r9
+		__asm__ __volatile__("POP  R8                    \n\t");
+ 32a:	8f 90       	pop	r8
+		__asm__ __volatile__("POP  R7                    \n\t");
+ 32c:	7f 90       	pop	r7
+		__asm__ __volatile__("POP  R6                    \n\t");
+ 32e:	6f 90       	pop	r6
+		__asm__ __volatile__("POP  R5                    \n\t");
+ 330:	5f 90       	pop	r5
+		__asm__ __volatile__("POP  R4                    \n\t");
+ 332:	4f 90       	pop	r4
+		__asm__ __volatile__("POP  R3                    \n\t");
+ 334:	3f 90       	pop	r3
+		__asm__ __volatile__("POP  R2                    \n\t");
+ 336:	2f 90       	pop	r2
+		__asm__ __volatile__("POP  __tmp_reg__           \n\t");
+ 338:	0f 90       	pop	r0
+		__asm__ __volatile__("OUT  __SREG__,__tmp_reg__  \n\t");
+ 33a:	0f be       	out	0x3f, r0	; 63
+		__asm__ __volatile__("POP  __tmp_reg__           \n\t"); 
+ 33c:	0f 90       	pop	r0
+		__asm__ __volatile__("POP  __zero_reg__          \n\t"); 
+ 33e:	1f 90       	pop	r1
+	}
+
+	OS_EXIT_CRITICAL();
+ 340:	78 94       	sei
+}
+ 342:	08 95       	ret
+
+00000344 <ATmega16OS_Task_Switch>:
+
+//任务切换函数
+void ATmega16OS_Task_Switch(void)
+{
+	//找到优先级别做高的任务
+	ATmega16OS_GetHighRdy();
+ 344:	0e 94 82 00 	call	0x104	; 0x104 <ATmega16OS_GetHighRdy>
+    //这里执行任务切换函数
+	OSSched();
+ 348:	0e 94 39 01 	call	0x272	; 0x272 <OSSched>
+}
+ 34c:	08 95       	ret
+
+0000034e <ATmega16OS_Time_Delay>:
+}
+
+//用于讲某任务在任务就绪表中删除
+void ATmega16OS_DelPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl &= ~(0x01 << Prio);
+ 34e:	e0 91 bd 00 	lds	r30, 0x00BD
+ 352:	f0 e0       	ldi	r31, 0x00	; 0
+ 354:	21 e0       	ldi	r18, 0x01	; 1
+ 356:	30 e0       	ldi	r19, 0x00	; 0
+ 358:	0e 2e       	mov	r0, r30
+ 35a:	02 c0       	rjmp	.+4      	; 0x360 <ATmega16OS_Time_Delay+0x12>
+ 35c:	22 0f       	add	r18, r18
+ 35e:	33 1f       	adc	r19, r19
+ 360:	0a 94       	dec	r0
+ 362:	e2 f7       	brpl	.-8      	; 0x35c <ATmega16OS_Time_Delay+0xe>
+ 364:	20 95       	com	r18
+ 366:	40 91 fe 00 	lds	r20, 0x00FE
+ 36a:	42 23       	and	r20, r18
+ 36c:	40 93 fe 00 	sts	0x00FE, r20
+void ATmega16OS_Time_Delay(UINT16 Ticks)
+{
+	//更新任务就绪表
+	ATmega16OS_DelPrioRdy(OSPrioCur);
+	//设置始终节拍数
+	TCB[OSPrioCur].DelayTick = Ticks;
+ 370:	63 e0       	ldi	r22, 0x03	; 3
+ 372:	ee 0f       	add	r30, r30
+ 374:	ff 1f       	adc	r31, r31
+ 376:	6a 95       	dec	r22
+ 378:	e1 f7       	brne	.-8      	; 0x372 <ATmega16OS_Time_Delay+0x24>
+ 37a:	e4 58       	subi	r30, 0x84	; 132
+ 37c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 37e:	96 83       	std	Z+6, r25	; 0x06
+ 380:	85 83       	std	Z+5, r24	; 0x05
+	//有关任务切换
+	ATmega16OS_Task_Switch();
+ 382:	0e 94 a2 01 	call	0x344	; 0x344 <ATmega16OS_Task_Switch>
+}
+ 386:	08 95       	ret
+
+00000388 <ATmega16OS_Task_Sem_Post>:
+	ATmega16OS_Task_Switch();
+}
+
+//发送信号量函数
+void ATmega16OS_Task_Sem_Post(void (*Task)(void))
+{
+ 388:	ac 01       	movw	r20, r24
+ 38a:	ee e7       	ldi	r30, 0x7E	; 126
+ 38c:	f0 e0       	ldi	r31, 0x00	; 0
+ 38e:	20 e0       	ldi	r18, 0x00	; 0
+    UINT8 Temp_Pro;
+	//获取优先级
+	for(Temp_Pro = 0;Temp_Pro < 8;Temp_Pro++)
+	{
+	    if(TCB[Temp_Pro].Function == Task)
+ 390:	80 81       	ld	r24, Z
+ 392:	91 81       	ldd	r25, Z+1	; 0x01
+ 394:	84 17       	cp	r24, r20
+ 396:	95 07       	cpc	r25, r21
+ 398:	21 f0       	breq	.+8      	; 0x3a2 <ATmega16OS_Task_Sem_Post+0x1a>
+//发送信号量函数
+void ATmega16OS_Task_Sem_Post(void (*Task)(void))
+{
+    UINT8 Temp_Pro;
+	//获取优先级
+	for(Temp_Pro = 0;Temp_Pro < 8;Temp_Pro++)
+ 39a:	2f 5f       	subi	r18, 0xFF	; 255
+ 39c:	38 96       	adiw	r30, 0x08	; 8
+ 39e:	28 30       	cpi	r18, 0x08	; 8
+ 3a0:	b9 f7       	brne	.-18     	; 0x390 <ATmega16OS_Task_Sem_Post+0x8>
+void ATmega16OS_SysTick_Init(void);
+
+//设置相应的任务为 就绪状态
+void ATmega16OS_SetPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl |= 0x01 << Prio;
+ 3a2:	81 e0       	ldi	r24, 0x01	; 1
+ 3a4:	90 e0       	ldi	r25, 0x00	; 0
+ 3a6:	02 c0       	rjmp	.+4      	; 0x3ac <ATmega16OS_Task_Sem_Post+0x24>
+ 3a8:	88 0f       	add	r24, r24
+ 3aa:	99 1f       	adc	r25, r25
+ 3ac:	2a 95       	dec	r18
+ 3ae:	e2 f7       	brpl	.-8      	; 0x3a8 <ATmega16OS_Task_Sem_Post+0x20>
+ 3b0:	20 91 fe 00 	lds	r18, 0x00FE
+ 3b4:	28 2b       	or	r18, r24
+ 3b6:	20 93 fe 00 	sts	0x00FE, r18
+		}
+	}
+    //置位相应的优先级
+	ATmega16OS_SetPrioRdy(Temp_Pro);
+	//进行任务调度
+	ATmega16OS_Task_Switch();
+ 3ba:	0e 94 a2 01 	call	0x344	; 0x344 <ATmega16OS_Task_Switch>
+}
+ 3be:	08 95       	ret
+
+000003c0 <ATmega16OS_Task_Sem_Suspend>:
+}
+
+//用于讲某任务在任务就绪表中删除
+void ATmega16OS_DelPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl &= ~(0x01 << Prio);
+ 3c0:	81 e0       	ldi	r24, 0x01	; 1
+ 3c2:	90 e0       	ldi	r25, 0x00	; 0
+ 3c4:	00 90 bd 00 	lds	r0, 0x00BD
+ 3c8:	02 c0       	rjmp	.+4      	; 0x3ce <ATmega16OS_Task_Sem_Suspend+0xe>
+ 3ca:	88 0f       	add	r24, r24
+ 3cc:	99 1f       	adc	r25, r25
+ 3ce:	0a 94       	dec	r0
+ 3d0:	e2 f7       	brpl	.-8      	; 0x3ca <ATmega16OS_Task_Sem_Suspend+0xa>
+ 3d2:	80 95       	com	r24
+ 3d4:	20 91 fe 00 	lds	r18, 0x00FE
+ 3d8:	28 23       	and	r18, r24
+ 3da:	20 93 fe 00 	sts	0x00FE, r18
+void ATmega16OS_Task_Sem_Suspend(void)
+{
+    //删除目前优先级最高的任务
+	ATmega16OS_DelPrioRdy(OSPrioCur);
+	//进行任务调度
+	ATmega16OS_Task_Switch();
+ 3de:	0e 94 a2 01 	call	0x344	; 0x344 <ATmega16OS_Task_Switch>
+}
+ 3e2:	08 95       	ret
+
+000003e4 <ATmega16OS_Tick_Hook>:
+     TCCR2 |= ((1 << CS01)|(1 << CS00));
+}
+
+//系统心脏定时器任务钩子函数 10ms进入一次
+void ATmega16OS_Tick_Hook(void)
+{
+ 3e4:	40 91 fe 00 	lds	r20, 0x00FE
+ 3e8:	e1 e8       	ldi	r30, 0x81	; 129
+ 3ea:	f0 e0       	ldi	r31, 0x00	; 0
+ 3ec:	20 e0       	ldi	r18, 0x00	; 0
+ 3ee:	30 e0       	ldi	r19, 0x00	; 0
+void ATmega16OS_SysTick_Init(void);
+
+//设置相应的任务为 就绪状态
+void ATmega16OS_SetPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl |= 0x01 << Prio;
+ 3f0:	61 e0       	ldi	r22, 0x01	; 1
+ 3f2:	70 e0       	ldi	r23, 0x00	; 0
+void ATmega16OS_Tick_Hook(void)
+{
+	UINT8 i = 0;
+	for(i = 0;i < 8;i++)
+	{
+	   if(TCB[i].DelayTick != 0)
+ 3f4:	80 81       	ld	r24, Z
+ 3f6:	91 81       	ldd	r25, Z+1	; 0x01
+ 3f8:	00 97       	sbiw	r24, 0x00	; 0
+ 3fa:	69 f0       	breq	.+26     	; 0x416 <ATmega16OS_Tick_Hook+0x32>
+	   {
+	      TCB[i].DelayTick--;
+ 3fc:	01 97       	sbiw	r24, 0x01	; 1
+ 3fe:	91 83       	std	Z+1, r25	; 0x01
+ 400:	80 83       	st	Z, r24
+		  if(TCB[i].DelayTick == 0)
+ 402:	89 2b       	or	r24, r25
+ 404:	41 f4       	brne	.+16     	; 0x416 <ATmega16OS_Tick_Hook+0x32>
+void ATmega16OS_SysTick_Init(void);
+
+//设置相应的任务为 就绪状态
+void ATmega16OS_SetPrioRdy(UINT8 Prio)
+{
+	OSRdyTbl |= 0x01 << Prio;
+ 406:	cb 01       	movw	r24, r22
+ 408:	02 2e       	mov	r0, r18
+ 40a:	02 c0       	rjmp	.+4      	; 0x410 <ATmega16OS_Tick_Hook+0x2c>
+ 40c:	88 0f       	add	r24, r24
+ 40e:	99 1f       	adc	r25, r25
+ 410:	0a 94       	dec	r0
+ 412:	e2 f7       	brpl	.-8      	; 0x40c <ATmega16OS_Tick_Hook+0x28>
+ 414:	48 2b       	or	r20, r24
+ 416:	2f 5f       	subi	r18, 0xFF	; 255
+ 418:	3f 4f       	sbci	r19, 0xFF	; 255
+ 41a:	38 96       	adiw	r30, 0x08	; 8
+
+//系统心脏定时器任务钩子函数 10ms进入一次
+void ATmega16OS_Tick_Hook(void)
+{
+	UINT8 i = 0;
+	for(i = 0;i < 8;i++)
+ 41c:	28 30       	cpi	r18, 0x08	; 8
+ 41e:	31 05       	cpc	r19, r1
+ 420:	49 f7       	brne	.-46     	; 0x3f4 <ATmega16OS_Tick_Hook+0x10>
+ 422:	40 93 fe 00 	sts	0x00FE, r20
+		     ATmega16OS_SetPrioRdy(i);
+		  }
+	   }
+	}
+	//找到优先级别做高的任务，并进行任务调度
+	ATmega16OS_Task_Switch();
+ 426:	0e 94 a2 01 	call	0x344	; 0x344 <ATmega16OS_Task_Switch>
+}
+ 42a:	08 95       	ret
+
+0000042c <__vector_4>:
+	OS_EXIT_CRITICAL();
+}
+
+
+SIGNAL(SIG_OVERFLOW2)
+{
+ 42c:	1f 92       	push	r1
+ 42e:	0f 92       	push	r0
+ 430:	0f b6       	in	r0, 0x3f	; 63
+ 432:	0f 92       	push	r0
+ 434:	11 24       	eor	r1, r1
+ 436:	2f 93       	push	r18
+ 438:	3f 93       	push	r19
+ 43a:	4f 93       	push	r20
+ 43c:	5f 93       	push	r21
+ 43e:	6f 93       	push	r22
+ 440:	7f 93       	push	r23
+ 442:	8f 93       	push	r24
+ 444:	9f 93       	push	r25
+ 446:	af 93       	push	r26
+ 448:	bf 93       	push	r27
+ 44a:	ef 93       	push	r30
+ 44c:	ff 93       	push	r31
+    OS_ENTER_CRITICAL();
+ 44e:	f8 94       	cli
+
+	TCNT2 = 100;
+ 450:	84 e6       	ldi	r24, 0x64	; 100
+ 452:	84 bd       	out	0x24, r24	; 36
+	ATmega16OS_Tick_Hook();
+ 454:	0e 94 f2 01 	call	0x3e4	; 0x3e4 <ATmega16OS_Tick_Hook>
+
+	OS_EXIT_CRITICAL();
+ 458:	78 94       	sei
+}
+ 45a:	ff 91       	pop	r31
+ 45c:	ef 91       	pop	r30
+ 45e:	bf 91       	pop	r27
+ 460:	af 91       	pop	r26
+ 462:	9f 91       	pop	r25
+ 464:	8f 91       	pop	r24
+ 466:	7f 91       	pop	r23
+ 468:	6f 91       	pop	r22
+ 46a:	5f 91       	pop	r21
+ 46c:	4f 91       	pop	r20
+ 46e:	3f 91       	pop	r19
+ 470:	2f 91       	pop	r18
+ 472:	0f 90       	pop	r0
+ 474:	0f be       	out	0x3f, r0	; 63
+ 476:	0f 90       	pop	r0
+ 478:	1f 90       	pop	r1
+ 47a:	18 95       	reti
+
+0000047c <init_74HC595>:
+Description:    移位寄存器端口初始化，PB0(数据线)、PB1(锁存线)、PB2(时钟线)三端口为控制线
+Writer: WZY
+*************************************************************/
+void init_74HC595(void)
+{
+    DDRB |= 0x07;       ///PB0~2初始化为输出状态
+ 47c:	87 b3       	in	r24, 0x17	; 23
+ 47e:	87 60       	ori	r24, 0x07	; 7
+ 480:	87 bb       	out	0x17, r24	; 23
+    LCLK_HIGH ;         ///锁存线拉高
+ 482:	c1 9a       	sbi	0x18, 1	; 24
+}
+ 484:	08 95       	ret
+
+00000486 <send_data_to_74HC595>:
+Outputs: none
+Description:    发送数据给移位寄存器
+Writer: XZ,WZY,WH
+*************************************************************/
+void send_data_to_74HC595(int data)
+{
+ 486:	ac 01       	movw	r20, r24
+ 488:	27 e0       	ldi	r18, 0x07	; 7
+ 48a:	30 e0       	ldi	r19, 0x00	; 0
+    int i , data_temp=0 ;
+    data_temp = data ;
+    for (i=0;i<8;i++)                       ///一次只能发送一个字节的数据（8位）
+    {
+        if( data_temp & (1<<(7-i)) )        ///从高位开始发送
+ 48c:	ca 01       	movw	r24, r20
+ 48e:	02 2e       	mov	r0, r18
+ 490:	02 c0       	rjmp	.+4      	; 0x496 <send_data_to_74HC595+0x10>
+ 492:	95 95       	asr	r25
+ 494:	87 95       	ror	r24
+ 496:	0a 94       	dec	r0
+ 498:	e2 f7       	brpl	.-8      	; 0x492 <send_data_to_74HC595+0xc>
+ 49a:	80 ff       	sbrs	r24, 0
+ 49c:	02 c0       	rjmp	.+4      	; 0x4a2 <send_data_to_74HC595+0x1c>
+            DATA_HIGH;                      ///数据线拉高
+ 49e:	c0 9a       	sbi	0x18, 0	; 24
+ 4a0:	01 c0       	rjmp	.+2      	; 0x4a4 <send_data_to_74HC595+0x1e>
+        else
+            DATA_LOW;                       ///数据线拉低
+ 4a2:	c0 98       	cbi	0x18, 0	; 24
+        SCLK_HIGH ;                         ///时钟线拉高
+ 4a4:	c2 9a       	sbi	0x18, 2	; 24
+        NOP() ; NOP() ;
+ 4a6:	00 00       	nop
+ 4a8:	00 00       	nop
+
+        SCLK_LOW ;                          ///时钟线拉低
+ 4aa:	c2 98       	cbi	0x18, 2	; 24
+ 4ac:	21 50       	subi	r18, 0x01	; 1
+ 4ae:	30 40       	sbci	r19, 0x00	; 0
+*************************************************************/
+void send_data_to_74HC595(int data)
+{
+    int i , data_temp=0 ;
+    data_temp = data ;
+    for (i=0;i<8;i++)                       ///一次只能发送一个字节的数据（8位）
+ 4b0:	8f ef       	ldi	r24, 0xFF	; 255
+ 4b2:	2f 3f       	cpi	r18, 0xFF	; 255
+ 4b4:	38 07       	cpc	r19, r24
+ 4b6:	51 f7       	brne	.-44     	; 0x48c <send_data_to_74HC595+0x6>
+        SCLK_HIGH ;                         ///时钟线拉高
+        NOP() ; NOP() ;
+
+        SCLK_LOW ;                          ///时钟线拉低
+    }
+}
+ 4b8:	08 95       	ret
+
+000004ba <display_74HC595>:
+Outputs: none
+Description:    向74HC595发送两次数据,前8位为段选，后八位为位选（选一位）
+Writer: XZ,WH,WZY
+*************************************************************/
+void display_74HC595(int sit, int seg)    ///situation为位,segment为段
+{
+ 4ba:	0f 93       	push	r16
+ 4bc:	1f 93       	push	r17
+ 4be:	8b 01       	movw	r16, r22
+Description:    移位寄存器端口初始化，PB0(数据线)、PB1(锁存线)、PB2(时钟线)三端口为控制线
+Writer: WZY
+*************************************************************/
+void init_74HC595(void)
+{
+    DDRB |= 0x07;       ///PB0~2初始化为输出状态
+ 4c0:	97 b3       	in	r25, 0x17	; 23
+ 4c2:	97 60       	ori	r25, 0x07	; 7
+ 4c4:	97 bb       	out	0x17, r25	; 23
+    LCLK_HIGH ;         ///锁存线拉高
+ 4c6:	c1 9a       	sbi	0x18, 1	; 24
+Writer: XZ,WH,WZY
+*************************************************************/
+void display_74HC595(int sit, int seg)    ///situation为位,segment为段
+{
+    init_74HC595();
+    LCLK_LOW ;
+ 4c8:	c1 98       	cbi	0x18, 1	; 24
+    send_data_to_74HC595( ~(1<<sit) );
+ 4ca:	21 e0       	ldi	r18, 0x01	; 1
+ 4cc:	30 e0       	ldi	r19, 0x00	; 0
+ 4ce:	02 c0       	rjmp	.+4      	; 0x4d4 <display_74HC595+0x1a>
+ 4d0:	22 0f       	add	r18, r18
+ 4d2:	33 1f       	adc	r19, r19
+ 4d4:	8a 95       	dec	r24
+ 4d6:	e2 f7       	brpl	.-8      	; 0x4d0 <display_74HC595+0x16>
+ 4d8:	c9 01       	movw	r24, r18
+ 4da:	80 95       	com	r24
+ 4dc:	90 95       	com	r25
+ 4de:	0e 94 43 02 	call	0x486	; 0x486 <send_data_to_74HC595>
+    send_data_to_74HC595( tube[seg] );
+ 4e2:	00 0f       	add	r16, r16
+ 4e4:	11 1f       	adc	r17, r17
+ 4e6:	00 5a       	subi	r16, 0xA0	; 160
+ 4e8:	1f 4f       	sbci	r17, 0xFF	; 255
+ 4ea:	f8 01       	movw	r30, r16
+ 4ec:	80 81       	ld	r24, Z
+ 4ee:	91 81       	ldd	r25, Z+1	; 0x01
+ 4f0:	0e 94 43 02 	call	0x486	; 0x486 <send_data_to_74HC595>
+    LCLK_HIGH ;
+ 4f4:	c1 9a       	sbi	0x18, 1	; 24
+}
+ 4f6:	1f 91       	pop	r17
+ 4f8:	0f 91       	pop	r16
+ 4fa:	08 95       	ret
+
+000004fc <tube_liushui>:
+Outputs: none
+Description:    移位寄存器实现数字流水效果,t控制移位时间(ms)
+Writer: WZY
+*************************************************************/
+void tube_liushui(int t)
+{
+ 4fc:	ff cf       	rjmp	.-2      	; 0x4fc <tube_liushui>
+
+000004fe <tube_decimal_num>:
+Outputs: none
+Description:    用数码管显示一个十进制整数，右对齐
+Writer: WZY
+*************************************************************/
+void tube_decimal_num(long dec_num)
+{
+ 4fe:	af 92       	push	r10
+ 500:	bf 92       	push	r11
+ 502:	cf 92       	push	r12
+ 504:	df 92       	push	r13
+ 506:	ef 92       	push	r14
+ 508:	ff 92       	push	r15
+ 50a:	0f 93       	push	r16
+ 50c:	1f 93       	push	r17
+ 50e:	cf 93       	push	r28
+ 510:	df 93       	push	r29
+ 512:	16 2f       	mov	r17, r22
+ 514:	07 2f       	mov	r16, r23
+ 516:	b8 2e       	mov	r11, r24
+ 518:	a9 2e       	mov	r10, r25
+ 51a:	26 2f       	mov	r18, r22
+ 51c:	37 2f       	mov	r19, r23
+ 51e:	48 2f       	mov	r20, r24
+ 520:	59 2f       	mov	r21, r25
+ 522:	c9 01       	movw	r24, r18
+ 524:	da 01       	movw	r26, r20
+ 526:	bc 01       	movw	r22, r24
+ 528:	cd 01       	movw	r24, r26
+ 52a:	cc 24       	eor	r12, r12
+ 52c:	dd 24       	eor	r13, r13
+    int weishu=0,i=0;
+    long num_temp=0;
+    num_temp=dec_num;
+    do
+    {
+        num_temp = num_temp/10;
+ 52e:	2a e0       	ldi	r18, 0x0A	; 10
+ 530:	30 e0       	ldi	r19, 0x00	; 0
+ 532:	40 e0       	ldi	r20, 0x00	; 0
+ 534:	50 e0       	ldi	r21, 0x00	; 0
+ 536:	0e 94 5a 05 	call	0xab4	; 0xab4 <__divmodsi4>
+ 53a:	c9 01       	movw	r24, r18
+ 53c:	da 01       	movw	r26, r20
+ 53e:	bc 01       	movw	r22, r24
+ 540:	cd 01       	movw	r24, r26
+        weishu++;
+ 542:	08 94       	sec
+ 544:	c1 1c       	adc	r12, r1
+ 546:	d1 1c       	adc	r13, r1
+    }
+    while( num_temp!=0 );
+ 548:	61 15       	cp	r22, r1
+ 54a:	71 05       	cpc	r23, r1
+ 54c:	81 05       	cpc	r24, r1
+ 54e:	91 05       	cpc	r25, r1
+ 550:	71 f7       	brne	.-36     	; 0x52e <tube_decimal_num+0x30>
+ 552:	e1 2e       	mov	r14, r17
+ 554:	f0 2e       	mov	r15, r16
+ 556:	0b 2d       	mov	r16, r11
+ 558:	1a 2d       	mov	r17, r10
+ 55a:	c0 e0       	ldi	r28, 0x00	; 0
+ 55c:	d0 e0       	ldi	r29, 0x00	; 0
+  //  while(1)
+ //   {
+        num_temp=dec_num;
+        for( i=0; i<weishu; i++ )
+        {
+            display_74HC595( 7-i, (num_temp%10) );
+ 55e:	97 e0       	ldi	r25, 0x07	; 7
+ 560:	a9 2e       	mov	r10, r25
+ 562:	b1 2c       	mov	r11, r1
+ 564:	b7 01       	movw	r22, r14
+ 566:	c8 01       	movw	r24, r16
+ 568:	2a e0       	ldi	r18, 0x0A	; 10
+ 56a:	30 e0       	ldi	r19, 0x00	; 0
+ 56c:	40 e0       	ldi	r20, 0x00	; 0
+ 56e:	50 e0       	ldi	r21, 0x00	; 0
+ 570:	0e 94 5a 05 	call	0xab4	; 0xab4 <__divmodsi4>
+ 574:	9b 01       	movw	r18, r22
+ 576:	ac 01       	movw	r20, r24
+ 578:	c5 01       	movw	r24, r10
+ 57a:	8c 1b       	sub	r24, r28
+ 57c:	9d 0b       	sbc	r25, r29
+ 57e:	b9 01       	movw	r22, r18
+ 580:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+            num_temp = num_temp/10;
+ 584:	b7 01       	movw	r22, r14
+ 586:	c8 01       	movw	r24, r16
+ 588:	2a e0       	ldi	r18, 0x0A	; 10
+ 58a:	30 e0       	ldi	r19, 0x00	; 0
+ 58c:	40 e0       	ldi	r20, 0x00	; 0
+ 58e:	50 e0       	ldi	r21, 0x00	; 0
+ 590:	0e 94 5a 05 	call	0xab4	; 0xab4 <__divmodsi4>
+ 594:	79 01       	movw	r14, r18
+ 596:	8a 01       	movw	r16, r20
+    }
+    while( num_temp!=0 );
+  //  while(1)
+ //   {
+        num_temp=dec_num;
+        for( i=0; i<weishu; i++ )
+ 598:	21 96       	adiw	r28, 0x01	; 1
+ 59a:	cc 15       	cp	r28, r12
+ 59c:	dd 05       	cpc	r29, r13
+ 59e:	14 f3       	brlt	.-60     	; 0x564 <tube_decimal_num+0x66>
+            display_74HC595( 7-i, (num_temp%10) );
+            num_temp = num_temp/10;
+          //  delay_ms(1);
+        }
+ //   }
+}
+ 5a0:	df 91       	pop	r29
+ 5a2:	cf 91       	pop	r28
+ 5a4:	1f 91       	pop	r17
+ 5a6:	0f 91       	pop	r16
+ 5a8:	ff 90       	pop	r15
+ 5aa:	ef 90       	pop	r14
+ 5ac:	df 90       	pop	r13
+ 5ae:	cf 90       	pop	r12
+ 5b0:	bf 90       	pop	r11
+ 5b2:	af 90       	pop	r10
+ 5b4:	08 95       	ret
+
+000005b6 <tube_0_to_9>:
+Outputs: none
+Description:    8位数码管从0~9循环显示
+Writer: WZY,DSY
+*************************************************************/
+void tube_0_to_9(void)
+{
+ 5b6:	ef 92       	push	r14
+ 5b8:	ff 92       	push	r15
+ 5ba:	0f 93       	push	r16
+ 5bc:	1f 93       	push	r17
+ 5be:	cf 93       	push	r28
+ 5c0:	df 93       	push	r29
+ 5c2:	1b c0       	rjmp	.+54     	; 0x5fa <tube_0_to_9+0x44>
+        {
+            for (k=0;k<50;k++)
+                {
+                    for(j=0;j<8;j++)
+                        {
+                            display_74HC595(j,i) ;
+ 5c4:	ce 01       	movw	r24, r28
+ 5c6:	b7 01       	movw	r22, r14
+ 5c8:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+    {
+        for( i=0; i<10; i++ )
+        {
+            for (k=0;k<50;k++)
+                {
+                    for(j=0;j<8;j++)
+ 5cc:	21 96       	adiw	r28, 0x01	; 1
+ 5ce:	c8 30       	cpi	r28, 0x08	; 8
+ 5d0:	d1 05       	cpc	r29, r1
+ 5d2:	c1 f7       	brne	.-16     	; 0x5c4 <tube_0_to_9+0xe>
+    int i=0,j=0,k=0;
+    while (1)
+    {
+        for( i=0; i<10; i++ )
+        {
+            for (k=0;k<50;k++)
+ 5d4:	0f 5f       	subi	r16, 0xFF	; 255
+ 5d6:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5d8:	02 33       	cpi	r16, 0x32	; 50
+ 5da:	11 05       	cpc	r17, r1
+ 5dc:	19 f0       	breq	.+6      	; 0x5e4 <tube_0_to_9+0x2e>
+ 5de:	c0 e0       	ldi	r28, 0x00	; 0
+ 5e0:	d0 e0       	ldi	r29, 0x00	; 0
+ 5e2:	f0 cf       	rjmp	.-32     	; 0x5c4 <tube_0_to_9+0xe>
+                    for(j=0;j<8;j++)
+                        {
+                            display_74HC595(j,i) ;
+                        }
+                }
+            delay_ms(1);
+ 5e4:	81 e0       	ldi	r24, 0x01	; 1
+ 5e6:	90 e0       	ldi	r25, 0x00	; 0
+ 5e8:	0e 94 0c 03 	call	0x618	; 0x618 <delay_ms>
+void tube_0_to_9(void)
+{
+    int i=0,j=0,k=0;
+    while (1)
+    {
+        for( i=0; i<10; i++ )
+ 5ec:	08 94       	sec
+ 5ee:	e1 1c       	adc	r14, r1
+ 5f0:	f1 1c       	adc	r15, r1
+ 5f2:	8a e0       	ldi	r24, 0x0A	; 10
+ 5f4:	e8 16       	cp	r14, r24
+ 5f6:	f1 04       	cpc	r15, r1
+ 5f8:	14 f0       	brlt	.+4      	; 0x5fe <tube_0_to_9+0x48>
+ 5fa:	ee 24       	eor	r14, r14
+ 5fc:	ff 24       	eor	r15, r15
+ 5fe:	00 e0       	ldi	r16, 0x00	; 0
+ 600:	10 e0       	ldi	r17, 0x00	; 0
+ 602:	ed cf       	rjmp	.-38     	; 0x5de <tube_0_to_9+0x28>
+
+00000604 <delay_us>:
+Outputs: none
+Description:    微秒级延时，数量为m
+Writer: WZY
+*************************************************************/
+void delay_us(int m)
+{
+ 604:	20 e0       	ldi	r18, 0x00	; 0
+ 606:	30 e0       	ldi	r19, 0x00	; 0
+ 608:	03 c0       	rjmp	.+6      	; 0x610 <delay_us+0xc>
+    int i ;
+    for( i=0 ; i<m ; i++ )
+        {
+            NOP();      ///空指令，1MHz下为1us
+ 60a:	00 00       	nop
+Writer: WZY
+*************************************************************/
+void delay_us(int m)
+{
+    int i ;
+    for( i=0 ; i<m ; i++ )
+ 60c:	2f 5f       	subi	r18, 0xFF	; 255
+ 60e:	3f 4f       	sbci	r19, 0xFF	; 255
+ 610:	28 17       	cp	r18, r24
+ 612:	39 07       	cpc	r19, r25
+ 614:	d4 f3       	brlt	.-12     	; 0x60a <delay_us+0x6>
+        {
+            NOP();      ///空指令，1MHz下为1us
+        }
+}
+ 616:	08 95       	ret
+
+00000618 <delay_ms>:
+        for( j=0 ; j<125 ; j++ )
+        {
+            ;
+        }
+    }
+}
+ 618:	08 95       	ret
+
+0000061a <init_tube>:
+Description:    数码管初始化，P3的a~p接PD0~7，阳极控制段选；P4的0~7接PB的0~7，阴极控制位选
+Writer: WZY
+*************************************************************/
+int init_tube(void)
+{
+    DDRB = 0XFF ;    ///寄存器设置为输出
+ 61a:	8f ef       	ldi	r24, 0xFF	; 255
+ 61c:	87 bb       	out	0x17, r24	; 23
+    DDRD = 0XFF ;
+ 61e:	81 bb       	out	0x11, r24	; 17
+    PORTB = 0xff ;   ///数码管共阴接法，阴极位选输出高电平，数码管不导通
+ 620:	88 bb       	out	0x18, r24	; 24
+    return 0 ;
+}
+ 622:	80 e0       	ldi	r24, 0x00	; 0
+ 624:	90 e0       	ldi	r25, 0x00	; 0
+ 626:	08 95       	ret
+
+00000628 <tube_circle>:
+Outputs: none
+Description:    8位数码管从左至右循环显示0~7,循环c次
+Writer: WZY
+*************************************************************/
+void tube_circle(int c)
+{
+ 628:	af 92       	push	r10
+ 62a:	bf 92       	push	r11
+ 62c:	cf 92       	push	r12
+ 62e:	df 92       	push	r13
+ 630:	ef 92       	push	r14
+ 632:	ff 92       	push	r15
+ 634:	0f 93       	push	r16
+ 636:	1f 93       	push	r17
+ 638:	cf 93       	push	r28
+ 63a:	df 93       	push	r29
+ 63c:	6c 01       	movw	r12, r24
+Description:    数码管初始化，P3的a~p接PD0~7，阳极控制段选；P4的0~7接PB的0~7，阴极控制位选
+Writer: WZY
+*************************************************************/
+int init_tube(void)
+{
+    DDRB = 0XFF ;    ///寄存器设置为输出
+ 63e:	8f ef       	ldi	r24, 0xFF	; 255
+ 640:	87 bb       	out	0x17, r24	; 23
+    DDRD = 0XFF ;
+ 642:	81 bb       	out	0x11, r24	; 17
+    PORTB = 0xff ;   ///数码管共阴接法，阴极位选输出高电平，数码管不导通
+ 644:	88 bb       	out	0x18, r24	; 24
+ 646:	ee 24       	eor	r14, r14
+ 648:	ff 24       	eor	r15, r15
+    init_tube();
+    for( j=0 ; j<c ; j++ )  ///控制循环次数
+    {
+        for( i=0 ; i<8 ; i++ )
+        {
+            PORTB = ~(1<<i) ;   ///移位导通二极管
+ 64a:	81 e0       	ldi	r24, 0x01	; 1
+ 64c:	a8 2e       	mov	r10, r24
+ 64e:	b1 2c       	mov	r11, r1
+ 650:	19 c0       	rjmp	.+50     	; 0x684 <tube_circle+0x5c>
+ 652:	c5 01       	movw	r24, r10
+ 654:	0c 2e       	mov	r0, r28
+ 656:	02 c0       	rjmp	.+4      	; 0x65c <tube_circle+0x34>
+ 658:	88 0f       	add	r24, r24
+ 65a:	99 1f       	adc	r25, r25
+ 65c:	0a 94       	dec	r0
+ 65e:	e2 f7       	brpl	.-8      	; 0x658 <tube_circle+0x30>
+ 660:	80 95       	com	r24
+ 662:	88 bb       	out	0x18, r24	; 24
+            PORTD = tube[i] ;
+ 664:	f8 01       	movw	r30, r16
+ 666:	80 81       	ld	r24, Z
+ 668:	82 bb       	out	0x12, r24	; 18
+            delay_ms(300);
+ 66a:	8c e2       	ldi	r24, 0x2C	; 44
+ 66c:	91 e0       	ldi	r25, 0x01	; 1
+ 66e:	0e 94 0c 03 	call	0x618	; 0x618 <delay_ms>
+{
+    int i,j ;
+    init_tube();
+    for( j=0 ; j<c ; j++ )  ///控制循环次数
+    {
+        for( i=0 ; i<8 ; i++ )
+ 672:	21 96       	adiw	r28, 0x01	; 1
+ 674:	0e 5f       	subi	r16, 0xFE	; 254
+ 676:	1f 4f       	sbci	r17, 0xFF	; 255
+ 678:	c8 30       	cpi	r28, 0x08	; 8
+ 67a:	d1 05       	cpc	r29, r1
+ 67c:	51 f7       	brne	.-44     	; 0x652 <tube_circle+0x2a>
+*************************************************************/
+void tube_circle(int c)
+{
+    int i,j ;
+    init_tube();
+    for( j=0 ; j<c ; j++ )  ///控制循环次数
+ 67e:	08 94       	sec
+ 680:	e1 1c       	adc	r14, r1
+ 682:	f1 1c       	adc	r15, r1
+ 684:	ec 14       	cp	r14, r12
+ 686:	fd 04       	cpc	r15, r13
+ 688:	2c f4       	brge	.+10     	; 0x694 <tube_circle+0x6c>
+ 68a:	00 e6       	ldi	r16, 0x60	; 96
+ 68c:	10 e0       	ldi	r17, 0x00	; 0
+ 68e:	c0 e0       	ldi	r28, 0x00	; 0
+ 690:	d0 e0       	ldi	r29, 0x00	; 0
+ 692:	df cf       	rjmp	.-66     	; 0x652 <tube_circle+0x2a>
+            PORTB = ~(1<<i) ;   ///移位导通二极管
+            PORTD = tube[i] ;
+            delay_ms(300);
+        }
+    }
+    PORTB = 0xff ;
+ 694:	8f ef       	ldi	r24, 0xFF	; 255
+ 696:	88 bb       	out	0x18, r24	; 24
+}
+ 698:	df 91       	pop	r29
+ 69a:	cf 91       	pop	r28
+ 69c:	1f 91       	pop	r17
+ 69e:	0f 91       	pop	r16
+ 6a0:	ff 90       	pop	r15
+ 6a2:	ef 90       	pop	r14
+ 6a4:	df 90       	pop	r13
+ 6a6:	cf 90       	pop	r12
+ 6a8:	bf 90       	pop	r11
+ 6aa:	af 90       	pop	r10
+ 6ac:	08 95       	ret
+
+000006ae <tube_on>:
+Description:    数码管初始化，P3的a~p接PD0~7，阳极控制段选；P4的0~7接PB的0~7，阴极控制位选
+Writer: WZY
+*************************************************************/
+int init_tube(void)
+{
+    DDRB = 0XFF ;    ///寄存器设置为输出
+ 6ae:	2f ef       	ldi	r18, 0xFF	; 255
+ 6b0:	27 bb       	out	0x17, r18	; 23
+    DDRD = 0XFF ;
+ 6b2:	21 bb       	out	0x11, r18	; 17
+    PORTB = 0xff ;   ///数码管共阴接法，阴极位选输出高电平，数码管不导通
+ 6b4:	28 bb       	out	0x18, r18	; 24
+Writer: WZY
+*************************************************************/
+void tube_on(int t)
+{
+    init_tube();
+    PORTB = 0x00 ;   ///阴极电平拉低
+ 6b6:	18 ba       	out	0x18, r1	; 24
+    PORTD = tube[t] ;    ///阳极高电平时导通
+ 6b8:	fc 01       	movw	r30, r24
+ 6ba:	ee 0f       	add	r30, r30
+ 6bc:	ff 1f       	adc	r31, r31
+ 6be:	e0 5a       	subi	r30, 0xA0	; 160
+ 6c0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 6c2:	80 81       	ld	r24, Z
+ 6c4:	82 bb       	out	0x12, r24	; 18
+    delay_ms(1000);
+ 6c6:	88 ee       	ldi	r24, 0xE8	; 232
+ 6c8:	93 e0       	ldi	r25, 0x03	; 3
+ 6ca:	0e 94 0c 03 	call	0x618	; 0x618 <delay_ms>
+}
+ 6ce:	08 95       	ret
+
+000006d0 <Bsp_Init>:
+	}
+}
+
+void Bsp_Init(void)
+{
+    MCUCSR=0x80;
+ 6d0:	80 e8       	ldi	r24, 0x80	; 128
+ 6d2:	84 bf       	out	0x34, r24	; 52
+    MCUCSR=0x80;
+ 6d4:	84 bf       	out	0x34, r24	; 52
+	DDRC=0xff;
+ 6d6:	8f ef       	ldi	r24, 0xFF	; 255
+ 6d8:	84 bb       	out	0x14, r24	; 20
+	DDRB=0xff;
+ 6da:	87 bb       	out	0x17, r24	; 23
+}
+ 6dc:	08 95       	ret
+
+000006de <Buzzer_Task>:
+//创建蜂鸣器任务
+void Buzzer_Task(void)
+{
+    while(1)
+	{
+	    ATmega16OS_Task_Sem_Suspend();
+ 6de:	0e 94 e0 01 	call	0x3c0	; 0x3c0 <ATmega16OS_Task_Sem_Suspend>
+	    fast_PWM(50);
+ 6e2:	82 e3       	ldi	r24, 0x32	; 50
+ 6e4:	90 e0       	ldi	r25, 0x00	; 0
+ 6e6:	0e 94 1e 05 	call	0xa3c	; 0xa3c <fast_PWM>
+		Left_Value++;
+		Left_Value = Left_Value%10000;
+ 6ea:	80 91 7a 00 	lds	r24, 0x007A
+ 6ee:	90 91 7b 00 	lds	r25, 0x007B
+ 6f2:	01 96       	adiw	r24, 0x01	; 1
+ 6f4:	60 e1       	ldi	r22, 0x10	; 16
+ 6f6:	77 e2       	ldi	r23, 0x27	; 39
+ 6f8:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 6fc:	90 93 7b 00 	sts	0x007B, r25
+ 700:	80 93 7a 00 	sts	0x007A, r24
+	    ATmega16OS_Time_Delay(20);
+ 704:	84 e1       	ldi	r24, 0x14	; 20
+ 706:	90 e0       	ldi	r25, 0x00	; 0
+ 708:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		TCCR0 = 0b00000000;
+ 70c:	13 be       	out	0x33, r1	; 51
+ 70e:	e7 cf       	rjmp	.-50     	; 0x6de <Buzzer_Task>
+
+00000710 <Tube_Task>:
+//创建数码管任务
+void Tube_Task(void)
+{
+    while(1)
+    {   
+	    One   = Left_Value/1000;
+ 710:	20 91 7a 00 	lds	r18, 0x007A
+ 714:	30 91 7b 00 	lds	r19, 0x007B
+ 718:	c9 01       	movw	r24, r18
+ 71a:	68 ee       	ldi	r22, 0xE8	; 232
+ 71c:	73 e0       	ldi	r23, 0x03	; 3
+ 71e:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 722:	46 2f       	mov	r20, r22
+ 724:	60 93 c6 01 	sts	0x01C6, r22
+		Two   = Left_Value/100%10;
+ 728:	c9 01       	movw	r24, r18
+ 72a:	64 e6       	ldi	r22, 0x64	; 100
+ 72c:	70 e0       	ldi	r23, 0x00	; 0
+ 72e:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 732:	cb 01       	movw	r24, r22
+ 734:	6a e0       	ldi	r22, 0x0A	; 10
+ 736:	70 e0       	ldi	r23, 0x00	; 0
+ 738:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 73c:	80 93 3f 01 	sts	0x013F, r24
+		Three = Left_Value/10%10;
+ 740:	c9 01       	movw	r24, r18
+ 742:	6a e0       	ldi	r22, 0x0A	; 10
+ 744:	70 e0       	ldi	r23, 0x00	; 0
+ 746:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 74a:	cb 01       	movw	r24, r22
+ 74c:	6a e0       	ldi	r22, 0x0A	; 10
+ 74e:	70 e0       	ldi	r23, 0x00	; 0
+ 750:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 754:	80 93 82 01 	sts	0x0182, r24
+		Four  = Left_Value%10;
+ 758:	c9 01       	movw	r24, r18
+ 75a:	6a e0       	ldi	r22, 0x0A	; 10
+ 75c:	70 e0       	ldi	r23, 0x00	; 0
+ 75e:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 762:	80 93 80 01 	sts	0x0180, r24
+
+		Five  = Right_Value/1000;
+ 766:	20 91 78 00 	lds	r18, 0x0078
+ 76a:	30 91 79 00 	lds	r19, 0x0079
+ 76e:	c9 01       	movw	r24, r18
+ 770:	68 ee       	ldi	r22, 0xE8	; 232
+ 772:	73 e0       	ldi	r23, 0x03	; 3
+ 774:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 778:	60 93 c5 01 	sts	0x01C5, r22
+		Six   = Right_Value/100%10;
+ 77c:	c9 01       	movw	r24, r18
+ 77e:	64 e6       	ldi	r22, 0x64	; 100
+ 780:	70 e0       	ldi	r23, 0x00	; 0
+ 782:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 786:	cb 01       	movw	r24, r22
+ 788:	6a e0       	ldi	r22, 0x0A	; 10
+ 78a:	70 e0       	ldi	r23, 0x00	; 0
+ 78c:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 790:	80 93 84 01 	sts	0x0184, r24
+		Seven = Right_Value/10%10;
+ 794:	c9 01       	movw	r24, r18
+ 796:	6a e0       	ldi	r22, 0x0A	; 10
+ 798:	70 e0       	ldi	r23, 0x00	; 0
+ 79a:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 79e:	cb 01       	movw	r24, r22
+ 7a0:	6a e0       	ldi	r22, 0x0A	; 10
+ 7a2:	70 e0       	ldi	r23, 0x00	; 0
+ 7a4:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 7a8:	80 93 81 01 	sts	0x0181, r24
+		Eight = Right_Value%10;
+ 7ac:	c9 01       	movw	r24, r18
+ 7ae:	6a e0       	ldi	r22, 0x0A	; 10
+ 7b0:	70 e0       	ldi	r23, 0x00	; 0
+ 7b2:	0e 94 33 05 	call	0xa66	; 0xa66 <__udivmodhi4>
+ 7b6:	80 93 83 01 	sts	0x0183, r24
+
+	    display_74HC595(0,One);
+ 7ba:	80 e0       	ldi	r24, 0x00	; 0
+ 7bc:	90 e0       	ldi	r25, 0x00	; 0
+ 7be:	64 2f       	mov	r22, r20
+ 7c0:	70 e0       	ldi	r23, 0x00	; 0
+ 7c2:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+	    display_74HC595(1,Two);
+ 7c6:	60 91 3f 01 	lds	r22, 0x013F
+ 7ca:	81 e0       	ldi	r24, 0x01	; 1
+ 7cc:	90 e0       	ldi	r25, 0x00	; 0
+ 7ce:	70 e0       	ldi	r23, 0x00	; 0
+ 7d0:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+		display_74HC595(2,Three);
+ 7d4:	60 91 82 01 	lds	r22, 0x0182
+ 7d8:	82 e0       	ldi	r24, 0x02	; 2
+ 7da:	90 e0       	ldi	r25, 0x00	; 0
+ 7dc:	70 e0       	ldi	r23, 0x00	; 0
+ 7de:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+		display_74HC595(3,Four);
+ 7e2:	60 91 80 01 	lds	r22, 0x0180
+ 7e6:	83 e0       	ldi	r24, 0x03	; 3
+ 7e8:	90 e0       	ldi	r25, 0x00	; 0
+ 7ea:	70 e0       	ldi	r23, 0x00	; 0
+ 7ec:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+		display_74HC595(4,Five);
+ 7f0:	60 91 c5 01 	lds	r22, 0x01C5
+ 7f4:	84 e0       	ldi	r24, 0x04	; 4
+ 7f6:	90 e0       	ldi	r25, 0x00	; 0
+ 7f8:	70 e0       	ldi	r23, 0x00	; 0
+ 7fa:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+		display_74HC595(5,Six);
+ 7fe:	60 91 84 01 	lds	r22, 0x0184
+ 802:	85 e0       	ldi	r24, 0x05	; 5
+ 804:	90 e0       	ldi	r25, 0x00	; 0
+ 806:	70 e0       	ldi	r23, 0x00	; 0
+ 808:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+		display_74HC595(6,Seven);
+ 80c:	60 91 81 01 	lds	r22, 0x0181
+ 810:	86 e0       	ldi	r24, 0x06	; 6
+ 812:	90 e0       	ldi	r25, 0x00	; 0
+ 814:	70 e0       	ldi	r23, 0x00	; 0
+ 816:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+		display_74HC595(7,Eight);
+ 81a:	60 91 83 01 	lds	r22, 0x0183
+ 81e:	87 e0       	ldi	r24, 0x07	; 7
+ 820:	90 e0       	ldi	r25, 0x00	; 0
+ 822:	70 e0       	ldi	r23, 0x00	; 0
+ 824:	0e 94 5d 02 	call	0x4ba	; 0x4ba <display_74HC595>
+ 828:	73 cf       	rjmp	.-282    	; 0x710 <Tube_Task>
+
+0000082a <LED_Task>:
+UINT8 Seven;
+UINT8 Eight;
+
+//创建LED灯任务
+void LED_Task(void)
+{
+ 82a:	af 92       	push	r10
+ 82c:	bf 92       	push	r11
+ 82e:	cf 92       	push	r12
+ 830:	df 92       	push	r13
+ 832:	ef 92       	push	r14
+ 834:	ff 92       	push	r15
+ 836:	0f 93       	push	r16
+ 838:	1f 93       	push	r17
+    while(1)
+    {
+        PORTC=0b11111111;
+ 83a:	aa 24       	eor	r10, r10
+ 83c:	aa 94       	dec	r10
+		ATmega16OS_Time_Delay(20);
+		Right_Value++;
+		PORTC=0b11111110;
+ 83e:	4e ef       	ldi	r20, 0xFE	; 254
+ 840:	b4 2e       	mov	r11, r20
+		ATmega16OS_Time_Delay(20);
+		Right_Value++;
+		PORTC=0b11111100;
+ 842:	3c ef       	ldi	r19, 0xFC	; 252
+ 844:	c3 2e       	mov	r12, r19
+		ATmega16OS_Time_Delay(20);
+		Right_Value++;
+		PORTC=0b11111000;
+ 846:	28 ef       	ldi	r18, 0xF8	; 248
+ 848:	d2 2e       	mov	r13, r18
+		ATmega16OS_Time_Delay(20);
+		Right_Value++;
+		PORTC=0b11110000;
+ 84a:	90 ef       	ldi	r25, 0xF0	; 240
+ 84c:	e9 2e       	mov	r14, r25
+		ATmega16OS_Time_Delay(20);
+		Right_Value++;
+		PORTC=0b11100000;
+ 84e:	80 ee       	ldi	r24, 0xE0	; 224
+ 850:	f8 2e       	mov	r15, r24
+		ATmega16OS_Time_Delay(20);
+		Right_Value++;
+		PORTC=0b11000000;
+ 852:	00 ec       	ldi	r16, 0xC0	; 192
+		ATmega16OS_Time_Delay(20);
+		Right_Value++;
+		PORTC=0b10000000;
+ 854:	10 e8       	ldi	r17, 0x80	; 128
+//创建LED灯任务
+void LED_Task(void)
+{
+    while(1)
+    {
+        PORTC=0b11111111;
+ 856:	a5 ba       	out	0x15, r10	; 21
+		ATmega16OS_Time_Delay(20);
+ 858:	84 e1       	ldi	r24, 0x14	; 20
+ 85a:	90 e0       	ldi	r25, 0x00	; 0
+ 85c:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 860:	80 91 78 00 	lds	r24, 0x0078
+ 864:	90 91 79 00 	lds	r25, 0x0079
+ 868:	01 96       	adiw	r24, 0x01	; 1
+ 86a:	90 93 79 00 	sts	0x0079, r25
+ 86e:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11111110;
+ 872:	b5 ba       	out	0x15, r11	; 21
+		ATmega16OS_Time_Delay(20);
+ 874:	84 e1       	ldi	r24, 0x14	; 20
+ 876:	90 e0       	ldi	r25, 0x00	; 0
+ 878:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 87c:	80 91 78 00 	lds	r24, 0x0078
+ 880:	90 91 79 00 	lds	r25, 0x0079
+ 884:	01 96       	adiw	r24, 0x01	; 1
+ 886:	90 93 79 00 	sts	0x0079, r25
+ 88a:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11111100;
+ 88e:	c5 ba       	out	0x15, r12	; 21
+		ATmega16OS_Time_Delay(20);
+ 890:	84 e1       	ldi	r24, 0x14	; 20
+ 892:	90 e0       	ldi	r25, 0x00	; 0
+ 894:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 898:	80 91 78 00 	lds	r24, 0x0078
+ 89c:	90 91 79 00 	lds	r25, 0x0079
+ 8a0:	01 96       	adiw	r24, 0x01	; 1
+ 8a2:	90 93 79 00 	sts	0x0079, r25
+ 8a6:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11111000;
+ 8aa:	d5 ba       	out	0x15, r13	; 21
+		ATmega16OS_Time_Delay(20);
+ 8ac:	84 e1       	ldi	r24, 0x14	; 20
+ 8ae:	90 e0       	ldi	r25, 0x00	; 0
+ 8b0:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 8b4:	80 91 78 00 	lds	r24, 0x0078
+ 8b8:	90 91 79 00 	lds	r25, 0x0079
+ 8bc:	01 96       	adiw	r24, 0x01	; 1
+ 8be:	90 93 79 00 	sts	0x0079, r25
+ 8c2:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11110000;
+ 8c6:	e5 ba       	out	0x15, r14	; 21
+		ATmega16OS_Time_Delay(20);
+ 8c8:	84 e1       	ldi	r24, 0x14	; 20
+ 8ca:	90 e0       	ldi	r25, 0x00	; 0
+ 8cc:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 8d0:	80 91 78 00 	lds	r24, 0x0078
+ 8d4:	90 91 79 00 	lds	r25, 0x0079
+ 8d8:	01 96       	adiw	r24, 0x01	; 1
+ 8da:	90 93 79 00 	sts	0x0079, r25
+ 8de:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11100000;
+ 8e2:	f5 ba       	out	0x15, r15	; 21
+		ATmega16OS_Time_Delay(20);
+ 8e4:	84 e1       	ldi	r24, 0x14	; 20
+ 8e6:	90 e0       	ldi	r25, 0x00	; 0
+ 8e8:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 8ec:	80 91 78 00 	lds	r24, 0x0078
+ 8f0:	90 91 79 00 	lds	r25, 0x0079
+ 8f4:	01 96       	adiw	r24, 0x01	; 1
+ 8f6:	90 93 79 00 	sts	0x0079, r25
+ 8fa:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11000000;
+ 8fe:	05 bb       	out	0x15, r16	; 21
+		ATmega16OS_Time_Delay(20);
+ 900:	84 e1       	ldi	r24, 0x14	; 20
+ 902:	90 e0       	ldi	r25, 0x00	; 0
+ 904:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 908:	80 91 78 00 	lds	r24, 0x0078
+ 90c:	90 91 79 00 	lds	r25, 0x0079
+ 910:	01 96       	adiw	r24, 0x01	; 1
+ 912:	90 93 79 00 	sts	0x0079, r25
+ 916:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b10000000;
+ 91a:	15 bb       	out	0x15, r17	; 21
+		ATmega16OS_Time_Delay(20);
+ 91c:	84 e1       	ldi	r24, 0x14	; 20
+ 91e:	90 e0       	ldi	r25, 0x00	; 0
+ 920:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 924:	80 91 78 00 	lds	r24, 0x0078
+ 928:	90 91 79 00 	lds	r25, 0x0079
+ 92c:	01 96       	adiw	r24, 0x01	; 1
+ 92e:	90 93 79 00 	sts	0x0079, r25
+ 932:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b00000000;
+ 936:	15 ba       	out	0x15, r1	; 21
+		ATmega16OS_Time_Delay(20);
+ 938:	84 e1       	ldi	r24, 0x14	; 20
+ 93a:	90 e0       	ldi	r25, 0x00	; 0
+ 93c:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 940:	80 91 78 00 	lds	r24, 0x0078
+ 944:	90 91 79 00 	lds	r25, 0x0079
+ 948:	01 96       	adiw	r24, 0x01	; 1
+ 94a:	90 93 79 00 	sts	0x0079, r25
+ 94e:	80 93 78 00 	sts	0x0078, r24
+
+		ATmega16OS_Task_Sem_Post(Buzzer_Task);
+ 952:	8f e6       	ldi	r24, 0x6F	; 111
+ 954:	93 e0       	ldi	r25, 0x03	; 3
+ 956:	0e 94 c4 01 	call	0x388	; 0x388 <ATmega16OS_Task_Sem_Post>
+
+		PORTC=0b10000000;
+ 95a:	15 bb       	out	0x15, r17	; 21
+		ATmega16OS_Time_Delay(20);
+ 95c:	84 e1       	ldi	r24, 0x14	; 20
+ 95e:	90 e0       	ldi	r25, 0x00	; 0
+ 960:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 964:	80 91 78 00 	lds	r24, 0x0078
+ 968:	90 91 79 00 	lds	r25, 0x0079
+ 96c:	01 96       	adiw	r24, 0x01	; 1
+ 96e:	90 93 79 00 	sts	0x0079, r25
+ 972:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11000000;
+ 976:	05 bb       	out	0x15, r16	; 21
+		ATmega16OS_Time_Delay(20);
+ 978:	84 e1       	ldi	r24, 0x14	; 20
+ 97a:	90 e0       	ldi	r25, 0x00	; 0
+ 97c:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 980:	80 91 78 00 	lds	r24, 0x0078
+ 984:	90 91 79 00 	lds	r25, 0x0079
+ 988:	01 96       	adiw	r24, 0x01	; 1
+ 98a:	90 93 79 00 	sts	0x0079, r25
+ 98e:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11100000;
+ 992:	f5 ba       	out	0x15, r15	; 21
+		ATmega16OS_Time_Delay(20);
+ 994:	84 e1       	ldi	r24, 0x14	; 20
+ 996:	90 e0       	ldi	r25, 0x00	; 0
+ 998:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 99c:	80 91 78 00 	lds	r24, 0x0078
+ 9a0:	90 91 79 00 	lds	r25, 0x0079
+ 9a4:	01 96       	adiw	r24, 0x01	; 1
+ 9a6:	90 93 79 00 	sts	0x0079, r25
+ 9aa:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11110000;
+ 9ae:	e5 ba       	out	0x15, r14	; 21
+		ATmega16OS_Time_Delay(20);
+ 9b0:	84 e1       	ldi	r24, 0x14	; 20
+ 9b2:	90 e0       	ldi	r25, 0x00	; 0
+ 9b4:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 9b8:	80 91 78 00 	lds	r24, 0x0078
+ 9bc:	90 91 79 00 	lds	r25, 0x0079
+ 9c0:	01 96       	adiw	r24, 0x01	; 1
+ 9c2:	90 93 79 00 	sts	0x0079, r25
+ 9c6:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11111000;
+ 9ca:	d5 ba       	out	0x15, r13	; 21
+		ATmega16OS_Time_Delay(20);
+ 9cc:	84 e1       	ldi	r24, 0x14	; 20
+ 9ce:	90 e0       	ldi	r25, 0x00	; 0
+ 9d0:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 9d4:	80 91 78 00 	lds	r24, 0x0078
+ 9d8:	90 91 79 00 	lds	r25, 0x0079
+ 9dc:	01 96       	adiw	r24, 0x01	; 1
+ 9de:	90 93 79 00 	sts	0x0079, r25
+ 9e2:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11111100;
+ 9e6:	c5 ba       	out	0x15, r12	; 21
+		ATmega16OS_Time_Delay(20);
+ 9e8:	84 e1       	ldi	r24, 0x14	; 20
+ 9ea:	90 e0       	ldi	r25, 0x00	; 0
+ 9ec:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ 9f0:	80 91 78 00 	lds	r24, 0x0078
+ 9f4:	90 91 79 00 	lds	r25, 0x0079
+ 9f8:	01 96       	adiw	r24, 0x01	; 1
+ 9fa:	90 93 79 00 	sts	0x0079, r25
+ 9fe:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11111110;
+ a02:	b5 ba       	out	0x15, r11	; 21
+		ATmega16OS_Time_Delay(20);
+ a04:	84 e1       	ldi	r24, 0x14	; 20
+ a06:	90 e0       	ldi	r25, 0x00	; 0
+ a08:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;
+ a0c:	80 91 78 00 	lds	r24, 0x0078
+ a10:	90 91 79 00 	lds	r25, 0x0079
+ a14:	01 96       	adiw	r24, 0x01	; 1
+ a16:	90 93 79 00 	sts	0x0079, r25
+ a1a:	80 93 78 00 	sts	0x0078, r24
+		PORTC=0b11111111;
+ a1e:	a5 ba       	out	0x15, r10	; 21
+		ATmega16OS_Time_Delay(20);
+ a20:	84 e1       	ldi	r24, 0x14	; 20
+ a22:	90 e0       	ldi	r25, 0x00	; 0
+ a24:	0e 94 a7 01 	call	0x34e	; 0x34e <ATmega16OS_Time_Delay>
+		Right_Value++;	
+ a28:	80 91 78 00 	lds	r24, 0x0078
+ a2c:	90 91 79 00 	lds	r25, 0x0079
+ a30:	01 96       	adiw	r24, 0x01	; 1
+ a32:	90 93 79 00 	sts	0x0079, r25
+ a36:	80 93 78 00 	sts	0x0078, r24
+ a3a:	0d cf       	rjmp	.-486    	; 0x856 <LED_Task+0x2c>
+
+00000a3c <fast_PWM>:
+Description:    快速PWM模式，占空比可调
+Writer: WZY
+*************************************************************/
+void fast_PWM(int percent)
+{
+    DDRB |= (1<<3);
+ a3c:	bb 9a       	sbi	0x17, 3	; 23
+    PORTB &= ~(1<<3);
+ a3e:	c3 98       	cbi	0x18, 3	; 24
+    TCNT0 = 0x00;
+ a40:	12 be       	out	0x32, r1	; 50
+    OCR0 = percent*255/100;
+ a42:	2f ef       	ldi	r18, 0xFF	; 255
+ a44:	30 e0       	ldi	r19, 0x00	; 0
+ a46:	ac 01       	movw	r20, r24
+ a48:	42 9f       	mul	r20, r18
+ a4a:	c0 01       	movw	r24, r0
+ a4c:	43 9f       	mul	r20, r19
+ a4e:	90 0d       	add	r25, r0
+ a50:	52 9f       	mul	r21, r18
+ a52:	90 0d       	add	r25, r0
+ a54:	11 24       	eor	r1, r1
+ a56:	64 e6       	ldi	r22, 0x64	; 100
+ a58:	70 e0       	ldi	r23, 0x00	; 0
+ a5a:	0e 94 47 05 	call	0xa8e	; 0xa8e <__divmodhi4>
+ a5e:	6c bf       	out	0x3c, r22	; 60
+    TCCR0 = 0b01101001;
+ a60:	89 e6       	ldi	r24, 0x69	; 105
+ a62:	83 bf       	out	0x33, r24	; 51
+}
+ a64:	08 95       	ret
+
+00000a66 <__udivmodhi4>:
+ a66:	aa 1b       	sub	r26, r26
+ a68:	bb 1b       	sub	r27, r27
+ a6a:	51 e1       	ldi	r21, 0x11	; 17
+ a6c:	07 c0       	rjmp	.+14     	; 0xa7c <__udivmodhi4_ep>
+
+00000a6e <__udivmodhi4_loop>:
+ a6e:	aa 1f       	adc	r26, r26
+ a70:	bb 1f       	adc	r27, r27
+ a72:	a6 17       	cp	r26, r22
+ a74:	b7 07       	cpc	r27, r23
+ a76:	10 f0       	brcs	.+4      	; 0xa7c <__udivmodhi4_ep>
+ a78:	a6 1b       	sub	r26, r22
+ a7a:	b7 0b       	sbc	r27, r23
+
+00000a7c <__udivmodhi4_ep>:
+ a7c:	88 1f       	adc	r24, r24
+ a7e:	99 1f       	adc	r25, r25
+ a80:	5a 95       	dec	r21
+ a82:	a9 f7       	brne	.-22     	; 0xa6e <__udivmodhi4_loop>
+ a84:	80 95       	com	r24
+ a86:	90 95       	com	r25
+ a88:	bc 01       	movw	r22, r24
+ a8a:	cd 01       	movw	r24, r26
+ a8c:	08 95       	ret
+
+00000a8e <__divmodhi4>:
+ a8e:	97 fb       	bst	r25, 7
+ a90:	09 2e       	mov	r0, r25
+ a92:	07 26       	eor	r0, r23
+ a94:	0a d0       	rcall	.+20     	; 0xaaa <__divmodhi4_neg1>
+ a96:	77 fd       	sbrc	r23, 7
+ a98:	04 d0       	rcall	.+8      	; 0xaa2 <__divmodhi4_neg2>
+ a9a:	e5 df       	rcall	.-54     	; 0xa66 <__udivmodhi4>
+ a9c:	06 d0       	rcall	.+12     	; 0xaaa <__divmodhi4_neg1>
+ a9e:	00 20       	and	r0, r0
+ aa0:	1a f4       	brpl	.+6      	; 0xaa8 <__divmodhi4_exit>
+
+00000aa2 <__divmodhi4_neg2>:
+ aa2:	70 95       	com	r23
+ aa4:	61 95       	neg	r22
+ aa6:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000aa8 <__divmodhi4_exit>:
+ aa8:	08 95       	ret
+
+00000aaa <__divmodhi4_neg1>:
+ aaa:	f6 f7       	brtc	.-4      	; 0xaa8 <__divmodhi4_exit>
+ aac:	90 95       	com	r25
+ aae:	81 95       	neg	r24
+ ab0:	9f 4f       	sbci	r25, 0xFF	; 255
+ ab2:	08 95       	ret
+
+00000ab4 <__divmodsi4>:
+ ab4:	97 fb       	bst	r25, 7
+ ab6:	09 2e       	mov	r0, r25
+ ab8:	05 26       	eor	r0, r21
+ aba:	0e d0       	rcall	.+28     	; 0xad8 <__divmodsi4_neg1>
+ abc:	57 fd       	sbrc	r21, 7
+ abe:	04 d0       	rcall	.+8      	; 0xac8 <__divmodsi4_neg2>
+ ac0:	14 d0       	rcall	.+40     	; 0xaea <__udivmodsi4>
+ ac2:	0a d0       	rcall	.+20     	; 0xad8 <__divmodsi4_neg1>
+ ac4:	00 1c       	adc	r0, r0
+ ac6:	38 f4       	brcc	.+14     	; 0xad6 <__divmodsi4_exit>
+
+00000ac8 <__divmodsi4_neg2>:
+ ac8:	50 95       	com	r21
+ aca:	40 95       	com	r20
+ acc:	30 95       	com	r19
+ ace:	21 95       	neg	r18
+ ad0:	3f 4f       	sbci	r19, 0xFF	; 255
+ ad2:	4f 4f       	sbci	r20, 0xFF	; 255
+ ad4:	5f 4f       	sbci	r21, 0xFF	; 255
+
+00000ad6 <__divmodsi4_exit>:
+ ad6:	08 95       	ret
+
+00000ad8 <__divmodsi4_neg1>:
+ ad8:	f6 f7       	brtc	.-4      	; 0xad6 <__divmodsi4_exit>
+ ada:	90 95       	com	r25
+ adc:	80 95       	com	r24
+ ade:	70 95       	com	r23
+ ae0:	61 95       	neg	r22
+ ae2:	7f 4f       	sbci	r23, 0xFF	; 255
+ ae4:	8f 4f       	sbci	r24, 0xFF	; 255
+ ae6:	9f 4f       	sbci	r25, 0xFF	; 255
+ ae8:	08 95       	ret
+
+00000aea <__udivmodsi4>:
+ aea:	a1 e2       	ldi	r26, 0x21	; 33
+ aec:	1a 2e       	mov	r1, r26
+ aee:	aa 1b       	sub	r26, r26
+ af0:	bb 1b       	sub	r27, r27
+ af2:	fd 01       	movw	r30, r26
+ af4:	0d c0       	rjmp	.+26     	; 0xb10 <__udivmodsi4_ep>
+
+00000af6 <__udivmodsi4_loop>:
+ af6:	aa 1f       	adc	r26, r26
+ af8:	bb 1f       	adc	r27, r27
+ afa:	ee 1f       	adc	r30, r30
+ afc:	ff 1f       	adc	r31, r31
+ afe:	a2 17       	cp	r26, r18
+ b00:	b3 07       	cpc	r27, r19
+ b02:	e4 07       	cpc	r30, r20
+ b04:	f5 07       	cpc	r31, r21
+ b06:	20 f0       	brcs	.+8      	; 0xb10 <__udivmodsi4_ep>
+ b08:	a2 1b       	sub	r26, r18
+ b0a:	b3 0b       	sbc	r27, r19
+ b0c:	e4 0b       	sbc	r30, r20
+ b0e:	f5 0b       	sbc	r31, r21
+
+00000b10 <__udivmodsi4_ep>:
+ b10:	66 1f       	adc	r22, r22
+ b12:	77 1f       	adc	r23, r23
+ b14:	88 1f       	adc	r24, r24
+ b16:	99 1f       	adc	r25, r25
+ b18:	1a 94       	dec	r1
+ b1a:	69 f7       	brne	.-38     	; 0xaf6 <__udivmodsi4_loop>
+ b1c:	60 95       	com	r22
+ b1e:	70 95       	com	r23
+ b20:	80 95       	com	r24
+ b22:	90 95       	com	r25
+ b24:	9b 01       	movw	r18, r22
+ b26:	ac 01       	movw	r20, r24
+ b28:	bd 01       	movw	r22, r26
+ b2a:	cf 01       	movw	r24, r30
+ b2c:	08 95       	ret
+
+00000b2e <_exit>:
+ b2e:	f8 94       	cli
+
+00000b30 <__stop_program>:
+ b30:	ff cf       	rjmp	.-2      	; 0xb30 <__stop_program>
